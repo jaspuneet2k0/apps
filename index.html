@@ -1,0 +1,810 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="themes/themes.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <script src=" http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+    <title>Hello World</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+
+    // device APIs are available
+    //
+    
+        var db = window.openDatabase("test", "1.0", "Test DB", 1000000);
+        db.transaction(function (tx) {
+            tx.executeSql('CREATE TABLE IF NOT EXISTS demo (id unique, name, email, service, design, project, comment)');
+            tx.executeSql('INSERT INTO demo (id, name, email, service, design, project, comment) VALUES (, "", "", "", "", "", "")');
+        });
+
+        db.transaction(function (tx) {
+            tx.executeSql('SELECT * FROM demo', [], function (tx, results) {
+                var len = results.rows.length, i;
+                for (i = 0; i < len; i++) {
+                    document.getElementById('submit').innerHTML += results.rows.item(i).name + "</b></p>";
+                }
+            });
+        });
+    </script>
+    <!--<script>0
+        $(function () {
+            var width = 720;
+            var animationSpeed = 1000;
+            var pause = 3000;
+            var currentSlide = 1;
+            var $slider = $('#slider');
+            var $slideContainer = $slider.find('.slides');
+            var $slides = $slideContainer.find('.slide');
+            var interval;
+            function startSlider() {
+                interval = setInterval(function () {
+                    $slideContainer.animate({ 'margin-left': '-=' + width }, animationSpeed, function () {
+                        currentSlide++;
+                        if (currentSlide == $slides.length) {
+                            currentSlide = 1;
+                            $slideContainer.css('margin-left', '0');
+                        }
+                    });
+                }, pause);
+            }
+            function stopSlider() {
+                clearInterval(interval);
+            }
+            $slider.on('mouseenter', stopSlider).on('mouseleave', startSlider);
+            startSlider();
+        });
+    </script>
+    <style>
+        #slider {
+            width: 200px;
+            height: 250px;
+            overflow:hidden
+        }
+            .slides {
+                display: block;
+                width: 6000px;
+                height: 250px;
+                margin: 0;
+                padding: 0;
+            }
+            .slide {
+                float: left;
+                width: 400px;
+                height: 250px;
+            }
+    </style>-->
+</head>
+<body>
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="page1" data-theme="b">
+        <div data-role="panel" id="navpanel" data-theme="b" data-display="push" data-position="left" style="position:fixed;">
+            <a href="#" data-role="button">Home</a>
+            <a href="#page2" data-role="button">About Us</a>
+            <a href="#page3" data-role="button">How We Proceed</a>
+            <a href="#page4" data-role="button">Our Projects</a>
+            <a href="#page5" data-role="button">Contact Us</a>
+        </div>
+        <div data-role="header" data-theme="b" style="width: 100%; position: fixed; top: 0px">
+	    <a id="bars-button" data-rel="close" data-icon="bars" data-iconpos="notext" class="ui-btn-left" href="#navpanel">Menu</a>
+            <h1>Space Symphony</h1>
+        </div>        
+        <div data-role="main" class="ui-content jqm-content jqm-fullwidth">
+            <!--<div id="slider">
+                <ul class="slides">
+                    <li class="slide"><img src="images/6.jpg" style="width:100%; height:250px"></li>
+                    <li class="slide"><img src="images/8.jpg" style="width:100%; height:250px"></li>
+                </ul>
+            </div>-->
+            <img src="images/7.jpg" style="width:100%; height:250px">
+
+            <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+            <div style='overflow:hidden;height:270px;width:100%;color:black; margin-top:10px'>
+                <div id='gmap_canvas' style='height:270px;width:100%;'></div>
+                <div>
+                    <small>
+                        <a href="http://embedgooglemaps.com">
+                            embed google maps
+                        </a>
+                    </small>
+                </div>
+                <div>
+                    <small>
+                        <a href="https://termsandcondiitionssample.com">terms and conditions sample</a>
+                    </small>
+                </div>
+                <style>
+                    #gmap_canvas img {
+                        max-width: none !important;
+                        background: none !important;
+                    }
+                </style>
+            </div>
+            <script type='text/javascript'>function init_map() { var myOptions = { zoom: 11, center: new google.maps.LatLng(28.593565, 77.31880160000003), mapTypeId: google.maps.MapTypeId.ROADMAP }; map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions); marker = new google.maps.Marker({ map: map, position: new google.maps.LatLng(28.593565, 77.31880160000003) }); infowindow = new google.maps.InfoWindow({ content: '<strong>Space Symphony</strong><br>Sector 6, Noida, Uttar Pradesh 201301<br>' }); google.maps.event.addListener(marker, 'click', function () { infowindow.open(map, marker); }); infowindow.open(map, marker); } google.maps.event.addDomListener(window, 'load', init_map);</script>
+        </div>
+        <div data-role="footer" style="position: fixed; bottom: 0px; width: 100%;">
+            <p style="text-align:center">Copyright &copy; 2016 Space Symphony</p>
+        </div>
+    </div>
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="page2" data-theme="b">
+        <div data-role="header" data-add-back-btn="true" data-theme="b" style="width:100%; position:fixed; top:0px">
+            <a id="bars-button" data-rel="close" data-icon="bars" data-iconpos="notext" class="ui-btn-left" href="#navpanel1">Menu</a>
+            <h1>About Us</h1>
+        </div>        
+        <div data-role="main" class="ui-content jqm-content jqm-fullwidth" style="margin-top:10px; margin-bottom:20px">
+            <h2>We are a bunch of professionals doing interior architectural jobs</h2>
+            <p style="text-align:justify">
+                Welcome to your dream space “Space Symphony” – your trusted partner into Furniture, Interior & Architecture. As the name suggests, we transform spaces like home, office, restaurant, hotel, etc. while also bringing harmony and balance that lets the inflow of positive energy. We swear to live by the brand name and work on a chosen design or a fusion of designs as per your desire.
+
+                Space Symphony is an interior design studio that provides the highest level of service in the industry. We provide creative elements and services for your home, work and life.
+
+                We are here to take the load off your shoulders & create a worry free design from start to finish. Providing options with the right technology for your dream house, that range from selecting paint colours, texture for your furnishing fabric, model design of your modular switch, accurate selection of light fixture, ideal light designing to sense your moods. Perfect selection of material and choice of design to suits your concept & taste. This list goes endless till the time your space gets accessorised.
+            </p>
+        </div>
+        <div data-role="panel" id="navpanel1" data-theme="b" data-display="push" data-position="left" style="position:fixed;">
+            <a href="#page1" data-role="button">Home</a>
+            <a href="#" data-role="button">About Us</a>
+            <a href="#page3" data-role="button">How We Proceed</a>
+            <a href="#page4" data-role="button">Our Projects</a>
+            <a href="#page5" data-role="button">Contact Us</a>
+        </div>
+        <div data-role="footer" style="position: fixed; bottom: 0px; width: 100%;">
+            <p style="text-align:center">Copyright &copy; 2016 Space Symphony</p>
+        </div>
+    </div>
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="page3" data-theme="b">
+        <div data-role="header" data-add-back-btn="true" data-theme="b" style="width:100%; position:fixed; top:0px">
+            <a id="bars-button" data-rel="close" data-icon="bars" data-iconpos="notext" class="ui-btn-left" href="#navpanel1">Menu</a>
+            <h1>About Us</h1>
+        </div>
+        <div data-role="main" class="ui-content jqm-content jqm-fullwidth" style="margin-top:10px; margin-bottom:20px">
+            <h2>How we Proceed – 5 Steps Mantra</h2>
+            <h3>Discovery Meeting</h3>
+            <p style="text-align:justify">This is an initial opportunity to discuss the project in detail and take the brief. During the discovery meeting we learn about the client's personality, their style and their individual lifestyle, tastes and aspirations. We determine Scope of work in project, give them the exposure of advanced technologies & discuss the scope of its implementation in their project. We'd also discuss outline budgets and time scale so that the project can progress smoothly. Space symphony also discuss the variety of budget range with client and decide for the specified project. Facilitate client  with the exposure of  varied design styles followed in interiors. Pick the one suiting to clients personality & taste.</p>
+            <h3>Concept Design</h3>
+            <p style="text-align:justify">In response to the client's brief a concept scheme is created for discussion. This will be presented in the form of design boards, draft layouts showing space utilisation, any structural modifications and furniture layouts. We produce mood boards or presentation sheets to demonstrate design style, colour schemes, wall treatments along with options for samples and finishes.</p>
+            <h3>Detail Design</h3>
+            <p style="text-align:justify">Once all elements in the concept design are agreed with the client, the project moves to the Detail Design and Specification stage.
+
+We start making working & technical drawings This procedure begins with crafting of accurate layout plans, all the working & technical drawings for the accurate implementation & execution on site.
+
+Every element of the scheme is designed and specified for the client to sign-off. Samples are presented for discussion and client final approval.</p>
+            <h3>Project Supervision</h3>
+            <p style="text-align:justify">The overall programme is drawn up and agreed with the client. Progress of the project is managed and monitored on site on a regular basis and any issues arising in the course of the project are resolved in a timely and pragmatic manner in order to maintain quality and programme. Any snagging issues are resolved quickly and efficiently to the client's satisfaction.</p>
+            <h3>Dressing & Accessorisation</h3>
+            <p style="text-align:justify;">At the finishing stage, every small detail is looked into with supreme vigilance and dedication to give you a wholesome experience. We closely monitor the output at every stage until the closure. This is where the vision becomes reality. All work by trades has been completed. Now the furniture is delivered, window treatments are installed, rugs laid, accessories placed and art hung.</p>
+            <a href="#myPopup" data-rel="popup" data-position-to="window">
+                <img src="images/DRGDININGROOM.jpg" alt="Skaret View" style="width: 200px; height: 144px; ">
+            </a>
+            <div data-role="popup" id="myPopup">
+                <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/DRGDININGROOM.jpg" style="width:800px;height:400px;" alt="Skaret View">
+            </div>
+            <a href="#myPopup1" data-rel="popup" data-position-to="window">
+                <img src="images/F..floor PLAN.jpg" alt="Skaret View" style="width: 200px; height: 144px; ">
+            </a>
+            <div data-role="popup" id="myPopup1">
+                <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/F..floor PLAN.jpg" style="width:800px;height:400px;" alt="Skaret View">
+            </div>
+            <a href="#myPopup2" data-rel="popup" data-position-to="window">
+                <img src="images/G.floor PLAN.jpg" alt="Skaret View" style="width: 200px; height: 144px; ">
+            </a>
+            <div data-role="popup" id="myPopup2">
+                <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/G.floor PLAN.jpg" style="width:800px;height:400px;" alt="Skaret View">
+            </div>
+            <a href="#myPopup3" data-rel="popup" data-position-to="window">
+                <img src="images/S. floor PLAN.jpg" alt="Skaret View" style="width: 200px; height: 144px; ">
+            </a>
+            <div data-role="popup" id="myPopup3">
+                <a href="#pageone" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img src="images/S. floor PLAN.jpg" style="width:800px;height:400px;" alt="Skaret View">
+            </div>
+        </div>
+        <div data-role="panel" id="navpanel1" data-theme="b" data-display="push" data-position="left" style="position:fixed;">
+            <a href="#page1" data-role="button">Home</a>
+            <a href="#page2" data-role="button">About Us</a>
+            <a href="#" data-role="button">How We Proceed</a>
+            <a href="#page4" data-role="button">Our Projects</a>
+            <a href="#page5" data-role="button">Contact Us</a>
+        </div>
+        <div data-role="footer" style="position: fixed; bottom: 0px; width: 100%;">
+            <p style="text-align:center">Copyright &copy; 2016 Space Symphony</p>
+        </div>
+    </div>
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="page4" data-theme="b">
+        <div data-role="header" data-add-back-btn="true" data-theme="b" style="width:100%; position:fixed; top:0px">
+            <a id="bars-button" data-rel="close" data-icon="bars" data-iconpos="notext" class="ui-btn-left" href="#navpanel1">Menu</a>
+            <h1>Our Projects</h1>
+        </div>
+        <div data-role="main" class="ui-content jqm-content jqm-fullwidth" style="margin-top:20px; margin-bottom:20px">
+            <table data-role="table" class="ui-responsive">
+                <thead>
+                    <tr>
+                        <th><h4>Serial No.</h4></th>
+                        <th><h4>Clients</h4></th>
+                        <th><h4>Project Category</h4></th>
+                        <th><h4>Area</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><p>1 </p></td>
+                        <td><p>Mr.Garg CC Colony Delhi-7</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>200 SQ. YD. </p></td>
+                    </tr>
+                    <tr>
+                        <td><p>2 </p></td>
+                        <td><p>MR.GOEL AT SHALIMAR BAGH,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>150 SQ.YD</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>3 </p></td>
+                        <td><p>MRS. LAXMI SETH APPT. AT VASANT KUNJ,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>1250 SQ.FT</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>4 </p></td>
+                        <td><p>MR.ANIL BAGARIA APPT. AT ROHINI,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>1250 SQ.FT</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>5 </p></td>
+                        <td><p>MR.KANAK APPT. AT ROHINI,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>1000 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>6 </p></td>
+                        <td><p>APPT. AT VASANT KUNG -HARISH,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>1800 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>7 </p></td>
+                        <td><p>MR.AJIT PATEL RESIDENCE AT BETUL,MP</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>750 SQ.YRDS</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>8 </p></td>
+                        <td><p>MR.B.L.KAPOORS RESIDENCE AT BETUL,MP</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>300 SQ.YRDS</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>9 </p></td>
+                        <td><p>MR.ASHOK GOEL RESI.AT SUKEHDEV VIHAR,N.D.</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>500 SQ.YRDS</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>10 </p></td>
+                        <td><p>MR.AMIT GUPTA RESI.AT G.K.-II,N.D.</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>1500 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11 </p></td>
+                        <td><p>MR.MALHOTRA RESI.AT SURYA NAGAR,GHAZIABAD</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>2000 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>12 </p></td>
+                        <td><p>MR.ANIL GUPTA'S RESI.AT SHAKTI NAGAR,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>2000 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>13 </p></td>
+                        <td><p>MR.RAMESH RESI.AT PRATAP NAGAR,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>2000 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>14 </p></td>
+                        <td><p>MR.MANISH RESI.AT SUKEHDEV VIHAR,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>1500 SQ.FT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>15 </p></td>
+                        <td><p>MR.HARISH KETERPAL RESI.AT GURGOAN</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>200 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>16 </p></td>
+                        <td><p>MR.MANOJ KETERPAL RESI.AT GURGOAN</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>360 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>17 </p></td>
+                        <td><p>MR.BALRAJ KUNDU'S RESI.AT ROHTAK,HARYANA</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>360 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>18 </p></td>
+                        <td><p>MR.PAWAN AGGARWAL'S RESI.AT ROOP NAGAR,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>250 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>19 </p></td>
+                        <td><p>MR.R.R.CHOWDHARY(MLA)RESIDENCE AT VASANT KUNJ</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>200 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>20 </p></td>
+                        <td><p>MR.SANDEEP GUPTA RESIDENCE AT ROOP NAGAR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>600 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>21 </p></td>
+                        <td><p>MR.AMIT GUPTA RESIDENCE AT ROOP NAGAR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>22 </p></td>
+                        <td><p>MR.SANJAY JE RESIDENCE AT LOK VIHAR.DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>275 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>23 </p></td>
+                        <td><p>MR.PARVEEN SOMANI RESIDENCE AT LOK VIHAR.DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>275 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>24 </p></td>
+                        <td><p>MR.MANISH RESIDENCE AT SANIK FARM.DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>800 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>25 </p></td>
+                        <td><p>MR.AMIT GUPTA APPARTMENT AT SHAKTI NAGAR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>250 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>26 </p></td>
+                        <td><p>MR.RAJESH GOEL RESI.AT PITAM PURA,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p>400 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>27 </p></td>
+                        <td><p>MR.ANIL GARG'S  -C.C.COLONY,DELHI-7</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>400 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>28 </p></td>
+                        <td><p>MR.RAKESH BOBBLE AT R.G.COMP. ROHINI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>400 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>29 </p></td>
+                        <td><p>MR.GURU SINGH AT VARDMAN COMP. ROHINI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>300 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>30 </p></td>
+                        <td><p>MR. GORI SHANKER AT D.L.F.PH- I</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>1200 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>31 </p></td>
+                        <td><p>MR.RAKESH BOBBLE AT E-48,G.K.-I</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>1000 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>32 </p></td>
+                        <td><p>QUQNTUM AT SAFERDERJUNG ENCL.N.D.</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>3000 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>33 </p></td>
+                        <td><p>EPERIUM AT C. P. NEW DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>530 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>34 </p></td>
+                        <td><p>MR.RAKESH BOBBLE AT 103,HANS BHAWAN</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>600 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>35 </p></td>
+                        <td><p>JMD AT PANCHSHEEL PARK</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>36 </p></td>
+                        <td><p>EPERIUM AT OKHLA- NEW DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>4250 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>37 </p></td>
+                        <td><p>MR.SWADSEH GUPTA OFF. AT PASCHIM VIHAR,N.D.</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>400 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>38 </p></td>
+                        <td><p>MR.RAMESH KR. AT CAPITAL MALL,SHAKTI NAGAR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>250 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>39 </p></td>
+                        <td><p>MR.RAMESH KR. AT PRATAP NAGAR,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>250 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>40 </p></td>
+                        <td><p>MR.VISHNU GUPTA OFFICE AT CHANDNI CHOWK,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>500 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>41 </p></td>
+                        <td><p>MR.PARVEEN SOMANI'S OFFICE AT NETAJI SUBASH PLACE,DELHI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>900 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>42 </p></td>
+                        <td><p>MR.NAFE SINGH RESIDENCE AT ROHTAK,HARYANA</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Offices</p></td>
+                        <td><p>250 SFT.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>43 </p></td>
+                        <td><p>MR.KISHAN LAL AT KAMLA NAGAR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Showrooms</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>44 </p></td>
+                        <td><p>MR.RAJEEV GUPTA AT KAMLA NAGAR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Showrooms</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>45 </p></td>
+                        <td><p>MR.RAKESH BOBBLE AT M-BLOCK MKT.G.K.-I</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Showrooms</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>46 </p></td>
+                        <td><p>MR.GUPTA'S AT AZAD PUR</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Showrooms</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>47 </p></td>
+                        <td><p>BREATHING BAMBOO-SAKET MALL</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Residences</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>48 </p></td>
+                        <td><p>MR.R.R.CHOUDHARY GUEST HOUSE AT SOUTH CITY</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Hotel+Guest House</p></td>
+                        <td><p>500 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>49 </p></td>
+                        <td><p>HOTEL - M-4 AT SHANJAHANPUR,RAJASTHAN</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Hotel+Guest House</p></td>
+                        <td><p>10000 SQ.YRDS.</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>50 </p></td>
+                        <td><p>MR.PAWAN AGGARWAL FAC. INTE.AT NARELA</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Mcs.</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>51 </p></td>
+                        <td><p>AQUAPOINT SWI,&FIT.CENTRE AT JANAKPURI</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Mcs.</p></td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>52 </p></td>
+                        <td><p>MR.RAMESH BANQ.HALL AT DDA MARKET,GULABI BAGH</p></td>
+                        <!--<td><p>0000-00-00</p></td>
+                <td><p>0000-00-00</p></td>-->
+                        <td><p>Mcs.</p></td>
+                        <td><p>2000 SFT.</p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div data-role="panel" id="navpanel1" data-theme="b" data-display="push" data-position="left" style="position:fixed;">
+            <a href="#page1" data-role="button">Home</a>
+            <a href="#page2" data-role="button">About Us</a>
+            <a href="#page3" data-role="button">How We Proceed</a>
+            <a href="#" data-role="button">Our Projects</a>
+            <a href="#page5" data-role="button">Contact Us</a>
+        </div>
+        <div data-role="footer" style="position: fixed; bottom: 0px; width: 100%;">
+            <p style="text-align:center">Copyright &copy; 2016 Space Symphony</p>
+        </div>
+    </div>
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="page5" data-theme="b">
+        <div data-role="header" data-add-back-btn="true" data-theme="b" style="width:100%; position:fixed; top:0px">
+            <a id="bars-button" data-rel="close" data-icon="bars" data-iconpos="notext" class="ui-btn-left" href="#navpanel1">Menu</a>
+            <h1>Contact Us</h1>
+        </div>
+        <div data-role="main" class="ui-content jqm-content jqm-fullwidth" style="margin-top:20px; margin-bottom:20px">
+            <h2>Our Office</h2>
+
+            <a href="#page1"><p>D-23 sector-6, Noida 201301 (Uttar Pradesh) INDIA</p></a>
+
+            <p>
+                Contact us<br />
+
+                +91-9891473889<br />
+
+                +91-9891713060<br />
+
+                Company email<br />
+            </p>
+            <a href="mailto:projects@company.com">interior@spacesymphony.in</a>
+            <form method="post" name="form1" id="form1" action="DEMO">
+                <div id="form">
+                <label for="name1" style="border-style:none">Name:</label>
+                <input type="text" name="name" id="name" style="background-color: white; color: black" required>
+                <label for="email1" style="border-style:none">Email:</label>
+                <input type="email" name="email" id="email" style="background-color: white; color: black" required>
+                <label for="service1" style="border-style:none">Select Services</label>
+                <select name="service" id="service">
+                    <option value="select">Select Services</option>
+                    <option value="interiors">Interiors</option>
+                    <option value="furniture">Furniture</option>
+                    <option value="archi">Architecture</option>
+                    <option value="space">Space Heading</option>
+                </select>
+                <label for="design1" style="border-style:none">Select Design Style</label>
+                <select name="design" id="design">
+                    <option value="select">Select Design Style</option>
+                    <option value="modern">Modern</option>
+                    <option value="cont">Contemporary</option>
+                    <option value="clas">Classical</option>
+                    <option value="art">Art Deco</option>
+                    <option value="theme">Theme Based</option>
+                    <option value="other">Others</option>
+                </select>
+                <label for="project1" style="border-style:none">Select Project Type</label>
+                <select name="project" id="project">
+                    <option value="select">Select Project Type</option>
+                    <option value="bunglow">Bunglow</option>
+                    <option value="apart">Apartment</option>
+                    <option value="farm">Farm House</option>
+                    <option value="office">Office</option>
+                    <option value="show">Show Room</option>
+                    <option value="hotel">Hotel</option>
+                    <option value="rest">Restaurant</option>
+                    <option value="bar">Bar</option>
+                    <option value="lounge">Lounge</option>
+                    <option value="other">Others</option>
+                </select>
+                <label for="comment1" style="border-style:none">Comment:</label>
+                <textarea cols="40" rows="8" name="comment" id="comment" style="background-color: white; color: black"></textarea>
+                </div>
+                <a href="#page6"><input type="submit" value="Submit" name="submit"></a>
+            </form>
+        </div>
+        <div data-role="panel" id="navpanel1" data-theme="b" data-display="push" data-position="left" style="position:fixed;">
+            <a href="#page1" data-role="button">Home</a>
+            <a href="#page2" data-role="button">About Us</a>
+            <a href="#page3" data-role="button">How We Proceed</a>
+            <a href="#page4" data-role="button">Our Projects</a>
+            <a href="#" data-role="button">Contact Us</a>
+        </div>
+        <div data-role="footer" style="position: fixed; bottom: 0px; width: 100%;">
+            <p style="text-align:center">Copyright &copy; 2016 Space Symphony</p>
+        </div>
+    </div>
+    <!--<script>
+        $(document).ready(function () {
+            $("#result").mousedown(function () {
+                $("#form1").reset();
+            });
+        });
+        $(document).ready(function () {
+            $("#result").mousedown(function () {
+                alert("Thanks for your message, we will contact you shortly")
+            });
+        });
+    </script>-->
+    <div data-role="page" class="jqm-demos ui-responsive-panel" id="page6" data-theme="b">
+        <div data-role="header" data-add-back-btn="true" data-theme="b" style="width:100%; position:fixed; top:0px">
+            <a id="bars-button" data-rel="close" data-icon="bars" data-iconpos="notext" class="ui-btn-left" href="#navpanel1">Menu</a>
+            <h1>Reply Soon</h1>
+        </div>
+        <div data-role="main" class="ui-content jqm-content jqm-fullwidth" style="margin-top:20px; margin-bottom:20px">
+            <h3>Thanks for your message, we will contact you shortly</h3>
+        </div>
+        <div data-role="panel" id="navpanel1" data-theme="b" data-display="push" data-position="left" style="position:fixed;">
+            <a href="#page1" data-role="button">Home</a>
+            <a href="#page2" data-role="button">About Us</a>
+            <a href="#page3" data-role="button">How We Proceed</a>
+            <a href="#page4" data-role="button">Our Projects</a>
+            <a href="#" data-role="button">Contact Us</a>
+        </div>
+        <div data-role="footer" style="position: fixed; bottom: 0px; width: 100%;">
+            <p style="text-align:center">Copyright &copy; 2016 Space Symphony</p>
+        </div>
+    </div>
+    <script type="text/javascrpit">
+        $(document).bind("mobileinit", function(){
+        $mobile.page.prototype.options.addBckBtn=true;
+        });
+        function adapt_to_orientation() {
+        // determine new screen_width
+        var screen_width;
+        if (window.orientation == 0 || window.orientation == 180) {
+        // portrait
+        screen_width = 630;
+        } else if (window.orientation == 90 || window.orientation == -90) {
+        // landscape
+        screen_width = 950;
+        }
+
+        // resize meta viewport
+        $('meta[name=viewport]').attr('content', 'width='+screen_width);
+        }
+
+        $(document).ready(function() {
+
+        // bind to handler
+        $('body').bind('orientationchange', adapt_to_orientation);
+
+        // call now
+        adapt_to_orientation();
+        });
+    </script>
+    <script type="text/javascript">
+        $( document ).on( "pagecreate", function() {
+        $( "#photopopup" ).on({
+        popupbeforeposition: function() {
+        var maxHeight = $( window ).height() - 60 + "px";
+        $( "#photopopup img" ).css( "max-height", maxHeight );
+        }
+        });
+        });
+    </script>
+</body>
+
+</html>
